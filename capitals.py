@@ -1,3 +1,5 @@
+import random
+
 # an array of state dictionaries
 states = [
 {
@@ -12,13 +14,15 @@ states = [
 }, {
     "name": "Arkansas",
     "capital": "Little Rock"
-}, {
+}, 
+{
     "name": "California",
     "capital": "Sacramento"
 }, {
     "name": "Colorado",
     "capital": "Denver"
-}, {
+}, 
+{
     "name": "Connecticut",
     "capital": "Hartford"
 }, {
@@ -141,7 +145,8 @@ states = [
 }, {
     "name": "Washington",
     "capital": "Olympia"
-}, {
+}, 
+{
     "name": "West Virginia",
     "capital": "Charleston"
 }, {
@@ -151,3 +156,67 @@ states = [
     "name": "Wyoming",
     "capital": "Cheyenne"
 }]
+
+print("Welcome to guessing each states capital! Best of luck!")
+random.shuffle(states)
+
+
+
+score = {
+	"correct" : 0,
+	"wrong": 0
+	}
+
+# returns each state name
+
+def start_game():
+	for state in states:
+		capital = input('What is the capitol of ' + state["name"] + '?')
+		guess = str(input())
+
+		if guess in capital == state["capital"]:
+			score["correct"] += 1
+			print(score)
+			print('Correct!')
+		else:
+			score["wrong"] += 1
+			print('Incorrect!')
+			print(score)
+start_game()
+
+
+
+def play_again():
+	if score["wrong"] + score["correct"] == 50:
+		question = input("Would you like to play again? y/n")
+		answer = str(input())
+		if answer in question == 'y':
+			score["correct"] = 0
+			score["wrong"] = 0
+			start_game()
+			play_again()
+
+		else:
+			exit()
+
+play_again()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
